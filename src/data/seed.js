@@ -511,6 +511,14 @@ export const seedSettings = {
   footerText:
     "Teamkraft Facility Services Private Limited — facility services, workforce solutions and operational support in Pune, Maharashtra.",
   socials: { linkedin: "", instagram: "", facebook: "" },
+  brand: { navy: "#17324D", cobalt: "#2463A6", teal: "#168C88" },
+  privacyText: [
+    "This website is a demonstration build prepared for Teamkraft Facility Services Private Limited. It is intended to preview the design and functionality of a future corporate website.",
+    "Form submissions (contact enquiries, quote requests, workforce enquiries and job applications) are stored only in the local storage of the visitor's own browser. They are not transmitted to a server and no email is sent.",
+    "No backend, customer database or analytics service is connected to this demo. Information entered here is not received by the company.",
+    "Demo information may be cleared at any time when browser data, cache or site storage is removed.",
+    "This policy describes the demo only and does not represent verified legal compliance or the company's actual privacy practices. A full privacy policy should be prepared before the website goes live.",
+  ],
   adminUsername: "admin",
   adminPassword: "Teamkraft@123",
 };

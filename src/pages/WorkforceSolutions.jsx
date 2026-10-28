@@ -30,7 +30,7 @@ const BLANK = {
 
 export default function WorkforceSolutions() {
   usePageTitle("Workforce Solutions");
-  const { company } = useSiteData();
+  const { company, addItem } = useSiteData();
   const [form, setForm] = useState(BLANK);
   const [errors, setErrors] = useState({});
   const [successId, setSuccessId] = useState("");
@@ -55,20 +55,13 @@ export default function WorkforceSolutions() {
     if (Object.keys(er).length > 0) return;
 
     const id = uid("WFE");
-    try {
-      const existing = JSON.parse(window.localStorage.getItem("tk_workforce") || "[]");
-      const stored = Array.isArray(existing) ? existing : [];
-      stored.push({
-        id,
-        ...form,
-        headcount: Number(form.headcount),
-        date: new Date().toISOString(),
-        status: "New",
-      });
-      window.localStorage.setItem("tk_workforce", JSON.stringify(stored));
-    } catch {
-      /* ignore */
-    }
+    addItem("workforce", {
+      ...form,
+      id,
+      headcount: Number(form.headcount),
+      date: new Date().toISOString(),
+      status: "New",
+    });
     setSuccessId(id);
     setForm(BLANK);
     window.scrollTo({ top: document.getElementById("workforce-form")?.offsetTop ?? 0, behavior: "smooth" });

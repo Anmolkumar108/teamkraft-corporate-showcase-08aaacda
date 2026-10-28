@@ -10,7 +10,7 @@ const BLANK = { name: "", email: "", phone: "", position: "", experience: "", in
 
 export default function Careers() {
   usePageTitle("Careers");
-  const { jobs } = useSiteData();
+  const { jobs, addItem } = useSiteData();
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const [applyingFor, setApplyingFor] = useState(null); // job id
@@ -48,22 +48,14 @@ export default function Careers() {
     if (Object.keys(er).length > 0) return;
 
     const id = uid("APP");
-    try {
-      const existing = JSON.parse(window.localStorage.getItem("tk_applications") || "[]");
-      const stored = Array.isArray(existing) ? existing : [];
-      stored.push({
-        id,
-        jobId: form.position,
-        position: published.find((j) => j.id === form.position)?.title || form.position,
-        ...form,
-        jobId: form.position,
-        date: new Date().toISOString(),
-        status: "New",
-      });
-      window.localStorage.setItem("tk_applications", JSON.stringify(stored));
-    } catch {
-      /* ignore */
-    }
+    addItem("applications", {
+      ...form,
+      id,
+      jobId: form.position,
+      position: published.find((j) => j.id === form.position)?.title || form.position,
+      date: new Date().toISOString(),
+      status: "New",
+    });
     setSuccessId(id);
     setForm(BLANK);
     setApplyingFor(null);
